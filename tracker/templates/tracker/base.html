@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ReadLog{% endblock %}</title>
+    <!-- Bootstrap 5 RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="{% static 'tracker/css/style.css' %}">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    {% csrf_token %}
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm navbar-custom-bg sticky-top py-1">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'library' %}">
+                <img src="{% static 'tracker/images/logo_readlog.jpg' %}" alt="Logo" class="logo-box me-1">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'library' %}">المكتبة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'habits' %}">العادات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'analytics' %}">الإحصائيات</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">عن المنصة</a></li>
+                </ul>
+                <ul class="navbar-nav align-items-center">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><span class="nav-link text-warning fw-bold">مرحباً، {{ user.username }}</span></li>
+                    <li class="nav-item"><a class="nav-link btn btn-sm btn-outline-light ms-2 px-3" href="{% url 'logout' %}">خروج</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">دخول</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">حساب جديد</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4 flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center py-3 mt-auto" style="background-color: #123B5D; color: #ffffff;">
+        <small>ReadLog &copy; 2026 | جميع الحقوق محفوظة.</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'tracker/js/habit_ajax.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% extends 'tracker/base.html' %}
+{% load static %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex align-items-center">
+        <!-- صورة العادات بدلاً من الأيقونة -->
+        <h2 class="fw-bold mb-0" style="color: #123B5D;">عاداتي اليومية</h2>
+        <img src="{% static 'tracker/images/habit.png' %}" alt="Habits" style="width: 150px; height: 150px; object-fit: contain; background: transparent;">    </div>
+    <button class="btn btn-teal" data-bs-toggle="modal" data-bs-target="#addHabitModal">+ إضافة عادة جديدة</button>
+</div>
+
+<div class="card card-custom p-3 mb-4 text-center bg-white shadow-sm border-0">
+    <h5 class="text-muted mb-0">📅 تاريخ اليوم: <span class="text-primary fw-bold">{{ today }}</span></h5>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        {% for item in habit_list %}
+        <div class="card card-custom p-3 mb-3 d-flex flex-row justify-content-between align-items-center border-0 shadow-sm" style="border-right: 6px solid {{ item.habit.color }} !important;">
+            <div>
+                <div class="d-flex align-items-center mb-1">
+                    <h5 class="mb-0 me-2 fw-bold" style="color: #123B5D;">{{ item.habit.name }}</h5>
+                    {% if not item.habit.active %}<span class="badge bg-secondary">موقوفة مؤقتاً</span>{% endif %}
+                </div>
+                <p class="text-muted small mb-1">{{ item.habit.description }}</p>
+                <div class="small text-secondary mb-2">
+                    <span>⏰ الوقت: من {{ item.habit.start_time }} إلى {{ item.habit.end_time }}</span> | 
+                    <span>🗓️ البدء: {{ item.habit.start_date }}</span> | 
+                    <span class="fw-bold text-success">📈 نسبة الإنجاز السنوي: {{ item.yearly_rate }}%</span>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center">
+                {% if item.habit.active %}
+                <button class="btn me-2 toggle-habit-btn {% if item.is_completed %}btn-success{% else %}btn-outline-success{% endif %}" data-habit-id="{{ item.habit.id }}">
+                    {% if item.is_completed %}✓ مكتملة{% else %}إنجاز العادة{% endif %}
+                </button>
+                {% endif %}
+                
+                <a href="{% url 'edit_habit' item.habit.id %}" class="btn btn-sm btn-outline-primary ms-1 px-3">تعديل</a>
+                <a href="{% url 'reset_habit' item.habit.id %}" class="btn btn-sm btn-outline-warning ms-1 px-3" onclick="return confirm('هل أنت متأكد من إعادة التعيين والبدء من الصفر؟')">تصفير (Reset)</a>
+                <a href="{% url 'delete_habit' item.habit.id %}" class="btn btn-sm btn-outline-danger ms-1 px-3">حذف</a>
+                <a href="{% url 'toggle_habit_pause' item.habit.id %}" class="btn btn-sm btn-outline-secondary ms-1 px-3">
+                    {% if item.habit.active %}إيقاف مؤقت{% else %}استئناف{% endif %}
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center py-5">
+            <p class="text-muted fs-5">لم تقم بإضافة عادات بعد.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal إضافة عادة -->
+<div class="modal fade" id="addHabitModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content p-4 border-0 shadow-lg rounded-4">
+            <h5 class="modal-title mb-3 fw-bold" style="color: #123B5D;">إضافة عادة جديدة</h5>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-teal w-100 mt-3 py-2 fw-bold shadow-sm">حفظ العادة</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

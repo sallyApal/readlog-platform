@@ -1,0 +1,56 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+<h2 class="mb-4">إحصائيات القراءة والعادات 📊</h2>
+
+<!-- بطاقات إحصائيات القراءة -->
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card card-custom p-3 stat-card text-center shadow-sm">
+            <h3 class="fw-bold" style="color: var(--teal-green, #159B78);">{{ completed_books }}</h3>
+            <p class="text-muted mb-0">كتب مكتملة</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card card-custom p-3 stat-card text-center shadow-sm">
+            <h3 class="fw-bold" style="color: var(--purple, #6254C7);">{{ reading_books }}</h3>
+            <p class="text-muted mb-0">قيد القراءة</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card card-custom p-3 stat-card text-center shadow-sm">
+            <h3 class="fw-bold" style="color: var(--warm-gold, #F4BE62);">{{ total_pages }}</h3>
+            <p class="text-muted mb-0">إجمالي الصفحات المقروءة</p>
+        </div>
+    </div>
+</div>
+
+<!-- تتبع العادات اليومية لكل عادة بلونها المخصص -->
+<div class="card card-custom p-4 shadow-sm bg-white">
+    <h5 class="mb-3">تتبع العادات اليومية لكل عادة بلونها المخصص</h5>
+    <canvas id="habitsChart" style="max-height: 350px;"></canvas>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('habitsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ chart_dates|safe }},
+            datasets: {{ chart_datasets|safe }}
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 1,
+                    ticks: { stepSize: 1 }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

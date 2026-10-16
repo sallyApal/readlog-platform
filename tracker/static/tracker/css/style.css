@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f8fafc;
+}
+
+/* تثبيت شريط التنقل في الأعلى */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* خلفية شريط التنقل */
+.navbar-custom-bg {
+    background-image: url('../images/navbook.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.navbar-custom-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(18, 59, 93, 0.9);
+    z-index: 1;
+}
+
+.navbar .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* تنسيق مربع اللوجو */
+.logo-box {
+    width: 85px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 8px;
+    padding: 3px;
+}
+
+.card-custom {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================
+   تنسيقات موحدة وجذابة للأزرار الرئيسية
+   ========================================== */
+:root {
+    --teal-main: #159B78;
+    --teal-hover: #107a5e;
+    --navy-main: #123B5D;
+    --navy-hover: #0c283f;
+    --gold-main: #F4BE62;
+}
+
+.btn-teal, 
+button[data-bs-target="#addBookModal"], 
+button[data-bs-target="#addHabitModal"],
+.modal-content button[type="submit"] {
+    background-color: var(--teal-main) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8px 18px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 5px rgba(21, 155, 120, 0.2) !important;
+    transition: all 0.2s ease-in-out !important;
+    cursor: pointer !important;
+}
+
+.btn-teal:hover, 
+button[data-bs-target="#addBookModal"]:hover, 
+button[data-bs-target="#addHabitModal"]:hover,
+.modal-content button[type="submit"]:hover {
+    background-color: var(--teal-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(21, 155, 120, 0.3) !important;
+}
+
+.btn-navy, 
+form button[type="submit"] {
+    background-color: var(--navy-main) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8px 18px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease-in-out !important;
+    cursor: pointer !important;
+}
+
+.btn-navy:hover, 
+form button[type="submit"]:hover {
+    background-color: var(--navy-hover) !important;
+}

@@ -1,0 +1,75 @@
+{% extends 'tracker/base.html' %}
+{% load static %}
+{% block content %}
+<div class="py-4">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold mb-3" style="color: #123B5D; font-size: 2.2rem;">رحلة ReadLog لتطوير العادات</h1>
+        <p class="text-muted fs-5 fw-normal">"كل كتاب تقرأه هو خطوة نحو عادة أفضل وأنت أفضل."</p>
+    </div>
+
+    <div class="row align-items-center g-5 mb-5">
+        <div class="col-lg-6">
+            <div class="pe-lg-3">
+                <img src="{% static 'tracker/images/girl_read.png' %}" alt="ReadLog Journey" class="img-fluid rounded-4 shadow-sm w-100" style="object-fit: cover; max-height: 400px;">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ps-lg-2">
+                <span class="badge px-3 py-2 rounded-pill mb-3" style="background-color: #e6f4f1; color: #159B78; font-size: 0.9rem;">قصتنا</span>
+                <h2 class="fw-bold mb-3" style="color: #123B5D;">منصة واحدة تجمع شغف القراءة وانضباط العادات</h2>
+                <p class="text-secondary lh-lg mb-0 fs-6">
+                    بدأت ReadLog من فكرة بسيطة: كل تغيير كبير يبدأ بخطوة صغيرة. فالقراءة ليست مجرد إنهاء للكتب، بل رحلة لبناء المعرفة والانضباط والعادات الإيجابية. تجمع المنصة بين متابعة الكتب وتتبع العادات في مكان واحد سلس لتتحول نواياك إلى إنجازات مستمرة.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 pt-3">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold" style="color: #123B5D;">لماذا ReadLog؟</h3>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="fw-bold mb-2 fs-4" style="color: #159B78;">01</div>
+                    <h6 class="fw-bold mb-2" style="color: #123B5D;">سجل مكتبتك الشخصية</h6>
+                    <p class="text-muted small mb-0 lh-base">متابعة الكتب قيد القراءة، والمكتملة، ونسبة تقدمك في كل كتاب بسهولة.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="fw-bold mb-2 fs-4" style="color: #6254C7;">02</div>
+                    <h6 class="fw-bold mb-2" style="color: #123B5D;">تتبع أهدافك القرائية</h6>
+                    <p class="text-muted small mb-0 lh-base">ربط القراءة بعاداتك اليومية وتحقيق الاستمرارية دون تشتت.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="fw-bold mb-2 fs-4" style="color: #F4BE62;">03</div>
+                    <h6 class="fw-bold mb-2" style="color: #123B5D;">تطوير عادات جديدة</h6>
+                    <p class="text-muted small mb-0 lh-base">نظام مرن لتسجيل العادات اليومية وتنبيهك بمواعيدها بدقة.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                <div class="p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="fw-bold mb-2 fs-4" style="color: #123B5D;">04</div>
+                    <h6 class="fw-bold mb-2" style="color: #123B5D;">إحصائيات ذكية ورسوم بيانية</h6>
+                    <p class="text-muted small mb-0 lh-base">تتبع نسبة إنجازك الأسبوعية والسنوية مع تقارير بصرية واضحة.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                <div class="p-4 bg-white rounded-4 shadow-sm h-100 border-0">
+                    <div class="fw-bold mb-2 fs-4" style="color: #159B78;">05</div>
+                    <h6 class="fw-bold mb-2" style="color: #123B5D;">تجربة سلسة ومستمرة</h6>
+                    <p class="text-muted small mb-0 lh-base">واجهة هادئة وسريعة الاستجابة مصممة لتجعل القراءة جزءاً من أسلوب حياتك.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
